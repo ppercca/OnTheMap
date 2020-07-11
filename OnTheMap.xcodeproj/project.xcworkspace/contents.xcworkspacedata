@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:OnTheMap.xcodeproj">
+      location = "self:/Users/ppercca/Documents/Principal/CURSOS/iOS/OnTheMap/OnTheMap.xcodeproj">
    </FileRef>
 </Workspace>

@@ -13,6 +13,8 @@ class AddLocationViewController: UIViewController {
     
     @IBOutlet weak var locationTextField: OnTheMapTextField!
     @IBOutlet weak var linkTextField: OnTheMapTextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var findLocarionButton: OnTheMapButton!
     
     @IBAction func cancelTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -32,12 +34,14 @@ class AddLocationViewController: UIViewController {
             showFailureMessage(message: "Please, introduce the link", title: "Missing Link")
             return
         }
+        loading(true)
         CLGeocoder().geocodeAddressString(location) { (placemarks, error) in
             self.processResponse(withPlacemarks: placemarks, error: error)
         }
     }
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+        loading(false)
         if error != nil {
             showFailureMessage(message: "The location wasn't found ", title: "Incorrect Location")
         } else {
@@ -61,4 +65,16 @@ class AddLocationViewController: UIViewController {
             }
         }
     }
+    
+    func loading(_ loading: Bool) {
+          if loading {
+              activityIndicator.startAnimating()
+          } else {
+              activityIndicator.stopAnimating()
+          }
+          locationTextField.isEnabled = !loading
+          linkTextField.isEnabled = !loading
+          findLocarionButton.isEnabled = !loading
+      }
+
 }

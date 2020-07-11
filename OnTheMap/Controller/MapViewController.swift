@@ -12,6 +12,7 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var location: String!
     var mediaURL: String!
     var latitude:  Double!
@@ -30,7 +31,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         annotation.title = location
         mapView.addAnnotation(annotation)
     }
-
+    
+    func loading(_ value: Bool) {
+        if value {
+            activityIndicator.startAnimating()
+            view.alpha = 0.5
+        } else {
+            activityIndicator.stopAnimating()
+            self.view.alpha = 1
+        }
+    }
+    
 // MARK: - Map Method
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -53,6 +64,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 // MARK: - Save and Update Student Information Methods
     
     @IBAction func finishButtonTapped(_ sender: Any) {
+        loading(true)
         if (UdacityClient.Auth.objectId.isEmpty) {
             UdacityClient.postStudentLocation(mapString: self.location, mediaURL: self.mediaURL, latitude: self.latitude, longitude: self.longitude, completion: self.handlerSaveStudentLocationResponse(success:error:))
         } else {
@@ -61,6 +73,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func handlerSaveStudentLocationResponse(success: Bool, error: Error?) -> Void {
+        loading(false)
         if success {
             let onTheMapViewController = self.storyboard?.instantiateViewController(withIdentifier: "OnTheMapViewController") as! UITabBarController
             onTheMapViewController.modalPresentationStyle = .fullScreen

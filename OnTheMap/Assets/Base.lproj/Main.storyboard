@@ -276,6 +276,9 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Cub-M1-qRE">
+                                <rect key="frame" x="197" y="524.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -286,7 +289,9 @@
                             <constraint firstItem="fc3-pf-uXp" firstAttribute="trailing" secondItem="61z-15-G9G" secondAttribute="trailing" constant="20" id="TzG-Pi-FtY"/>
                             <constraint firstItem="fc3-pf-uXp" firstAttribute="trailing" secondItem="Jue-aT-54R" secondAttribute="trailing" constant="20" id="WDw-cS-r1E"/>
                             <constraint firstItem="Jue-aT-54R" firstAttribute="centerY" secondItem="tUR-3n-nBF" secondAttribute="centerY" id="q2l-3O-9r1"/>
+                            <constraint firstItem="Cub-M1-qRE" firstAttribute="centerX" secondItem="tUR-3n-nBF" secondAttribute="centerX" id="qor-0P-Fey"/>
                             <constraint firstItem="61z-15-G9G" firstAttribute="bottom" secondItem="Jue-aT-54R" secondAttribute="top" constant="-40" id="swU-GH-SB6"/>
+                            <constraint firstItem="Cub-M1-qRE" firstAttribute="top" secondItem="Jue-aT-54R" secondAttribute="bottom" constant="12" id="vPK-lx-x2D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fc3-pf-uXp"/>
                     </view>
@@ -298,6 +303,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Cub-M1-qRE" id="7Y1-xY-lVL"/>
+                        <outlet property="findLocarionButton" destination="Iys-R9-cYZ" id="eLN-tB-UqA"/>
                         <outlet property="linkTextField" destination="OAz-kf-0QY" id="JtF-ZD-ruO"/>
                         <outlet property="locationTextField" destination="uto-kY-k9T" id="gF2-3R-Lh0"/>
                     </connections>
@@ -334,15 +341,20 @@
                                     <action selector="finishButtonTapped:" destination="472-bc-MLA" eventType="touchUpInside" id="ksZ-Js-6ZG"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hRr-50-edI">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="hIN-kO-k0B" firstAttribute="bottom" secondItem="Z7K-3e-Z1V" secondAttribute="bottom" id="2Bl-I8-YWS"/>
+                            <constraint firstItem="hRr-50-edI" firstAttribute="centerY" secondItem="44S-Nq-KIH" secondAttribute="centerY" id="6Ps-N9-53L"/>
                             <constraint firstItem="hIN-kO-k0B" firstAttribute="trailing" secondItem="Z7K-3e-Z1V" secondAttribute="trailing" id="6ot-4Z-xLb"/>
                             <constraint firstItem="Z7K-3e-Z1V" firstAttribute="bottom" secondItem="vcS-U5-oGf" secondAttribute="bottom" constant="35" id="HZf-d3-8IZ"/>
                             <constraint firstItem="vcS-U5-oGf" firstAttribute="leading" secondItem="Z7K-3e-Z1V" secondAttribute="leading" constant="20" id="Jh0-Fg-Q88"/>
                             <constraint firstItem="hIN-kO-k0B" firstAttribute="top" secondItem="Z7K-3e-Z1V" secondAttribute="top" id="LhJ-87-ZVR"/>
                             <constraint firstItem="vcS-U5-oGf" firstAttribute="centerX" secondItem="Z7K-3e-Z1V" secondAttribute="centerX" id="lJS-Ce-huE"/>
+                            <constraint firstItem="hRr-50-edI" firstAttribute="centerX" secondItem="44S-Nq-KIH" secondAttribute="centerX" id="lUt-SC-ekM"/>
                             <constraint firstItem="hIN-kO-k0B" firstAttribute="leading" secondItem="Z7K-3e-Z1V" secondAttribute="leading" id="o85-oA-TLK"/>
                             <constraint firstItem="Z7K-3e-Z1V" firstAttribute="trailing" secondItem="vcS-U5-oGf" secondAttribute="trailing" constant="20" id="vbe-kQ-ZE2"/>
                         </constraints>
@@ -350,6 +362,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="ew7-ea-DGT"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="hRr-50-edI" id="29o-3s-WeG"/>
                         <outlet property="mapView" destination="hIN-kO-k0B" id="E5B-Ex-eql"/>
                     </connections>
                 </viewController>
